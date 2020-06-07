@@ -1,0 +1,197 @@
+package HASH;
+
+import java.util.Scanner;
+public class HASHGAME {
+	public static void main(String[] args) {
+		
+		 
+
+		// variáveis do jogo
+		String resposta, jogador1, jogador2;
+		boolean b=true, validou;
+		int linha, coluna;
+		int[][] matriz= new int[3][3];
+		Scanner AA = new Scanner(System.in);
+
+		// instruções do jogo 
+		do {
+			System.out.println();
+			System.out.println("== INSTRUÇÕES DO JOGO ==");
+			System.out.println("jogador 1 =  1");
+			System.out.println("jogador 2 = -1");
+			System.out.println("Obs:o jogador irá colocar a posição do número ");
+			System.out.println("colocando primeiro o n° da linha e depois o n° coluna");
+
+			// deseja iniciar o jogo ?
+			System.out.println("deseja iniciar o jogo? sim/não?");
+			resposta=AA.next();
+			if(resposta.equalsIgnoreCase("Sim")) {
+
+				//nome do jogador 1 e 2
+
+				System.out.println("insira o nome do 1° jogador");
+				jogador1=AA.next();
+
+				System.out.println("insira o nome do 2° jogador");
+				jogador2=AA.next();
+
+
+				//coloquei um nome no laço for para poder parar o laço quando o jogador 1 ou 2 ganhar 
+				tom:for(int l=0; l<matriz.length ; l++) {
+					for(int c=0; c<matriz[l].length; c++) {
+						System.out.println("qual posição inserir o 1 ");
+						linha = AA.nextInt();
+						coluna = AA.nextInt();
+
+						// se for o caso de o jogador escolher a mesma posição ou a posição do oponente, irá pedir novamente a posição 
+						// até sair do do while  ||
+						//                      \||/
+						//                       \/
+
+						do {
+							validou = true;
+							if(matriz[linha][coluna] != 0) {
+								System.out.println("já existe uma peça nessa posição, escolha outra posição");
+								linha = AA.nextInt();
+								coluna = AA.nextInt();
+								validou = false;
+							}
+						}while(!validou);
+						matriz[linha][coluna]=1;
+
+
+						// irá fazer a verificação em todas as jogadas , para ver se o jogador tem as três posições iguais e venceu o jogo	
+
+						if(matriz[0][0]==1&&matriz[0][1]==1&&matriz[0][2]==1){
+							System.out.println("parabéns "+jogador1+ " você venceu");
+							break tom;
+
+						}else 
+							if(matriz[0][0]==1&&matriz[1][0]==1&&matriz[2][0]==1) {
+								System.out.println("parabéns "+jogador1+ " você venceu");
+								break tom;
+							}else
+								if(matriz[1][0]==1&&matriz[1][1]==1&&matriz[1][2]==1){
+									System.out.println("parabéns "+jogador1+ " você venceu");
+
+									break tom;
+								}else
+									if(matriz[2][0]==1&&matriz[2][1]==1&&matriz[2][2]==1) {
+										System.out.println("parabéns "+jogador1+ " você venceu");
+
+										break tom;
+									}else
+										if(matriz[0][1]==1&&matriz[1][1]==1&&matriz[2][1]==1){
+											System.out.println("parabéns "+jogador1+ " você venceu");
+
+											break tom;	
+										}else
+											if(matriz[0][2]==1&&matriz[1][2]==1&&matriz[2][2]==1) {
+												System.out.println("parabéns "+jogador1+ " você venceu");
+
+												break tom;
+											}else
+												if(matriz[2][0]==1&&matriz[1][1]==1&&matriz[0][2]==1) {
+													System.out.println("parabéns "+jogador1+ " você venceu");
+
+													break tom;
+												}else
+													if(matriz[0][0]==1&&matriz[1][1]==1&&matriz[2][2]==1) {
+														System.out.println("parabéns "+jogador1+ " você venceu");
+
+														break tom;
+													}
+
+						// imprime a matriz atualizada toda as vezes que o jogador 1 ou 2 jogar 
+
+						for(int i=0; i<matriz.length ; i++) {
+							for(int j=0; j<matriz[i].length; j++) {
+								System.out.print("|"+matriz[i][j]+"|");
+							}
+							System.out.println();
+						}
+						System.out.println("qual posição inserir o -1 ");
+						linha = AA.nextInt();
+						coluna = AA.nextInt();
+
+						// se for o caso de o jogador escolher a mesma posição ou a posição do oponente, irá pedir novamente a posição 
+						// até sair do do while  ||
+						//                      \||/
+						//                       \/
+
+						do {
+							validou = true;
+							if(matriz[linha][coluna] != 0) {
+								System.out.println("já existe uma peça nessa posição, escolha outra posição");
+								linha = AA.nextInt();
+								coluna = AA.nextInt();
+								validou = false;
+							}
+						}while(!validou);
+						matriz[linha][coluna]=-1;
+
+						// irá fazer a verificação em todas as jogadas , para ver se o jogador tem as três posições iguais e venceu o jogo	
+
+						if(matriz[0][0]==-1&&matriz[0][1]==-1&&matriz[0][2]==-1){
+							System.out.println("parabéns "+jogador2+ " você venceu");
+							break tom;
+						}else 
+							if(matriz[0][0]==-1&&matriz[1][0]==-1&&matriz[2][0]==-1) {
+								System.out.println("parabéns "+jogador2+ " você venceu");
+
+								break tom;
+
+							}else
+								if(matriz[1][0]==-1&&matriz[1][1]==-1&&matriz[1][2]==-1){
+									System.out.println("parabéns "+jogador2+ " você venceu");
+
+									break tom;	
+								}else
+									if(matriz[2][0]==-1&&matriz[2][1]==-1&&matriz[2][2]==-1) {
+										System.out.println("parabéns "+jogador2+ " você venceu");
+
+										break tom;
+									}else
+										if(matriz[0][1]==-1&&matriz[1][1]==-1&&matriz[2][1]==-1){
+											System.out.println("parabéns "+jogador2+ " você venceu");
+
+											break tom;	
+										}else
+											if(matriz[0][2]==-1&&matriz[1][2]==-1&&matriz[2][2]==-1) {
+												System.out.println("parabéns "+jogador2+ " você venceu");
+
+
+												break tom;
+											}else
+												if(matriz[2][0]==-1&&matriz[1][1]==-1&&matriz[0][2]==-1) {
+													System.out.println("parabéns "+jogador2+ " você venceu");
+
+													break tom;
+												}else
+													if(matriz[0][0]==-1&&matriz[1][1]==-1&&matriz[2][2]==-1) {
+														System.out.println("parabéns "+jogador2+ " você venceu");
+
+														break tom;
+													}
+
+
+						// imprime a matriz atualizada toda as vezes que o jogador 1 ou 2 jogar 
+
+						for(int i=0; i<matriz.length ; i++) {
+							for(int j=0; j<matriz[i].length; j++) {
+								System.out.print("|"+matriz[i][j]+"|");
+							}
+							System.out.println();
+						}
+
+					}
+				}
+			}else {
+
+				b=false;
+
+			}b=false;
+		}while(!b);
+		AA.close();
+	}
+  }
